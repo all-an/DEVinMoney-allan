@@ -36,6 +36,7 @@ public class ContaPoupanca extends Conta {
 	}
 
 	public Map<Date, String> getExtratoTrancacoes() {
+		System.out.println("\nExtrato de Transações:");
 		return extratoTrancacoes;
 	}
 

@@ -1,12 +1,14 @@
 package principal;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 import entidades.Conta;
 import entidades.ContaCorrente;
+import entidades.ContaPoupanca;
 import entidades.Transacao;
 
 public class Programa {
@@ -85,16 +87,41 @@ public class Programa {
 	}
 	
 	public static void operacional() {
-		Transacao transacao = new Transacao();
+		
 		System.out.print("Digite o número da sua conta corrente: ");
 		int numConta = scanner.nextInt();
 		Conta conta = listaContas.stream().filter(x -> x.getConta() == numConta).findFirst().orElse(null);
-		System.out.println(conta.getSaldo());
-		conta.saque(300.00);
-		if(conta.getClass().isAssignableFrom(ContaCorrente.class)) {
-			ContaCorrente contaCorrente = (ContaCorrente) conta;
-			System.out.print(contaCorrente.getExtratoTrancacoes());
-			contaCorrente.getSaldo();
+		System.out.println("Digite operação que deseja: "
+				+ "\n1) Saque \n2) Depósito \n3) Saldo \n4) Extrato \n5) Transferir \n6) Alterar Dados Cadastrais");
+		
+		int operacao = scanner.nextInt();
+		switch(operacao) {
+			case 1:
+				System.out.println("Digite o valor a ser sacado: ");
+				Double valorSaque = scanner.nextDouble();
+				conta.saque(valorSaque);
+				historicoTransacoes.add(new Transacao(conta, conta,valorSaque, new Date()));
+				System.out.println(conta.getSaldo());
+				break;
+			case 2:
+				System.out.println("Digite o valor a ser sacado: ");
+				Double valorDeposito = scanner.nextDouble();
+				conta.deposito(valorDeposito);
+				historicoTransacoes.add(new Transacao(conta, conta, valorDeposito, new Date()));
+				System.out.println(conta.getSaldo());
+				break;
+			case 3:
+				System.out.print("Saldo: " + conta.getSaldo());
+				break;
+			case 4:
+				if(conta.getClass().isAssignableFrom(ContaCorrente.class) || conta.getClass().isAssignableFrom(ContaPoupanca.class)) {
+					ContaCorrente contaCorrente = (ContaCorrente) conta;
+					System.out.print(contaCorrente.getExtratoTrancacoes());
+					contaCorrente.getSaldo();
+				}
+				break;
+			case 5:
+				
 		}
 	}
 }
