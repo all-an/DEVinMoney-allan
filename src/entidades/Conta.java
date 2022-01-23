@@ -10,7 +10,7 @@ public class Conta {
 		int[] cpfIntArr = new int[cpf.length()];
 		for (int i = 0; i < cpf.length(); i++)
 		{
-		    cpfIntArr[i] = cpf.charAt(i) - '0'; // '0' char é 48 em decimal
+		    cpfIntArr[i] = cpf.charAt(i) - '0'; // '0' char é 48 em decimal https://www.asciitable.com/
 		    System.out.println("Convertido para int: " + cpfIntArr[i]);
 		}
 		System.out.println(validaCpf(cpfIntArr));
@@ -28,11 +28,13 @@ public class Conta {
 
 	public Boolean validaCpf(int[] cpf) {
 		if(cpf.length != 11) {
-			return "Cpf inválido";
+			System.out.println("Cpf inválido");
+			return false;
 		}else if(validadorGovBrDigitoUm(cpf) == false || validadorGovBrDigitoDois(cpf) == false) {
-			return "Digito Verificador INVÁLIDO, cpf inválido";
+			System.out.println("Digito Verificador INVÁLIDO, cpf inválido");
+			return false;
 		}
-		return "Cpf válido";
+		return true;
 	}
 
 	@Override
