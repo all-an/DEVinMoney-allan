@@ -2,19 +2,63 @@ package entidades;
 
 import java.util.Arrays;
 
-public class Conta {
+public abstract class Conta {
 	
+	private String nome;
 	private int[] cpf;
+	private Double rendaMensal;
+	private static int conta = 0;
+	private Integer agencia;
+	protected Double saldo;
 
-	public Conta(String cpf) {
-		int[] cpfIntArr = new int[cpf.length()];
-		for (int i = 0; i < cpf.length(); i++)
-		{
-		    cpfIntArr[i] = cpf.charAt(i) - '0'; // '0' char é 48 em decimal https://www.asciitable.com/
-		    System.out.println("Convertido para int: " + cpfIntArr[i]);
+	public Conta(String nome, String cpf, Double rendaMensal,Integer agencia) {
+		this.nome = nome;
+		if(validaCpf(converteParaIntArr(cpf))) {
+			this.cpf = converteParaIntArr(cpf);
+		}else {
+			this.cpf = null;
 		}
-		System.out.println(validaCpf(cpfIntArr));
-		this.cpf = cpfIntArr;
+		this.rendaMensal = rendaMensal;
+		this.conta += 1;
+		if(agencia == 001 || agencia == 002) {
+			this.agencia = agencia;
+		}else {
+			System.out.println("Você digitou uma agência inválida, vamos refazer o cadastro");
+		}
+		this.saldo = rendaMensal;
+	}
+	
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Double getRendaMensal() {
+		return rendaMensal;
+	}
+
+	public void setRendaMensal(Double rendaMensal) {
+		this.rendaMensal = rendaMensal;
+	}
+
+	public int getConta() {
+		return conta;
+	}
+
+	public Integer getAgencia() {
+		return agencia;
+	}
+
+	public void setAgencia(Integer agencia) {
+		this.agencia = agencia;
+	}
+
+	public Double getSaldo() {
+		return saldo;
 	}
 
 	public String getCpf() {
@@ -55,10 +99,6 @@ public class Conta {
 		}else if(resto >= 2 && resto <= 10) {
 			digUmVerdadeiro = 11 - resto;
 		}
-		System.out.println("Soma um: " + soma);
-		System.out.println("Resto um: " + resto);
-		//return digUmVerdadeiro.equals(cpf[9]);
-		System.out.println(digUmVerdadeiro);
 		return digUmVerdadeiro.equals(cpf[9]);
 	}
 	
@@ -74,7 +114,23 @@ public class Conta {
 		}else if(resto >= 2 && resto <= 10) {
 			digDoisVerdadeiro = 11 - resto;
 		}
-		System.out.println(digDoisVerdadeiro);
 		return digDoisVerdadeiro.equals(cpf[10]);
+	}
+	
+	public int[] converteParaIntArr(String cpf) {
+		int[] cpfIntArr = new int[cpf.length()];
+		for (int i = 0; i < cpf.length(); i++)
+		{
+		    cpfIntArr[i] = cpf.charAt(i) - '0'; // '0' char é 48 em decimal https://www.asciitable.com/
+		}
+		return cpfIntArr;
+	}
+	
+	public void saque(Double valor) {
+		saldo -= valor;
+	}
+	
+	public void deposito(Double valor) {
+		saldo += valor;
 	}
 }
