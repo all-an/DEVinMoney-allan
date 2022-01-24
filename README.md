@@ -26,7 +26,9 @@ O banco DEVinMoney deseja automatizar todo o seu sistema de armazenamento de inf
 
 - [ ] ● Conta investimento 
 - [ ] ○ Neste tipo de conta, o cliente poderá escolher um tipo de investimento e o sistema deve apresentar o rendimento anual do investimento solicitado. 
-- [ ] ○ O cliente poderá simular o rendimento do seu valor, levando em consideração o rendimento do investimento escolhido. Todas as contas devem ser derivadas da classe Conta, que possui os seguintes atributos e métodos: 
+- [ ] ○ O cliente poderá simular o rendimento do seu valor, levando em consideração o rendimento do investimento escolhido. 
+
+Todas as contas devem ser derivadas da classe Conta, que possui os seguintes atributos e métodos: 
 
 - [x] ● Conta 
 - [x] ○ Atributos 
@@ -35,7 +37,7 @@ O banco DEVinMoney deseja automatizar todo o seu sistema de armazenamento de inf
 - [x] ○ Renda mensal 
 - [x] ○ Conta (o sistema deverá gerar um número da conta sequencial) 
 - [x] ○ Agência 
-- [x] ■ Atualmente o banco possui duas agências: 4 
+- [x] ■ Atualmente o banco possui duas agências: 
 - [x] ● 001 - Florianópolis 
 - [x] ● 002 - São José 
 - [x]○ Saldo 

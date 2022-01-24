@@ -18,6 +18,4 @@ public class ContaInvestimento extends Conta {
 	public void setInvestimento(Investimento investimento) {
 		this.investimento = investimento;
 	}
-
-	
 }

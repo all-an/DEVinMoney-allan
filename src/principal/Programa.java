@@ -9,11 +9,13 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-
 import entidades.Conta;
 import entidades.ContaCorrente;
+import entidades.ContaInvestimento;
 import entidades.ContaPoupanca;
 import entidades.Transacao;
+import servicos.InvestimentoCDB;
+import servicos.InvestimentoTesouroDireto;
 
 public class Programa {
 	static Scanner scanner = new Scanner(System.in);
@@ -95,6 +97,33 @@ public class Programa {
 	        	System.out.println("Para finalizar digite 1 , para simular outra vez digite 0");
 	        	sair = scanner.nextInt();
 	        }
+			System.out.println("Conta criada com sucesso.");
+		}else if(contaEscolha == 3) {
+			ContaInvestimento contaInvestment = new ContaInvestimento(nome, cpf, rendaMensal, agencia, null);
+			int sair = 0;
+	        while(sair == 0) {
+	        	System.out.println("Escolha um investimento: \n1) CDB (5% ao ano) \n2) Tesouro Direto (1% ao ano)");
+	        	int investm = scanner.nextInt();
+	        	if(investm == 1) {
+	        		contaInvestment.setInvestimento(new InvestimentoCDB());
+	        	}else if(investm == 2) {
+	        		contaInvestment.setInvestimento(new InvestimentoTesouroDireto());
+	        	}else {
+	        		System.out.println("Favor escolher um investimento");
+	        		sair = 0;
+	        	}
+	        	while(sair == 0) {
+		        	System.out.println("Vamos simular seus investimentos. \nDigite em quantos meses deseja simular: ");
+		        	Integer meses = scanner.nextInt();
+		        	System.out.println("Digite a taxa de rentabilidade: ");
+		        	Double taxa = scanner.nextDouble();
+		            //System.out.println(contaPoupanca.simularRentabilidade(meses, taxa));
+		        	System.out.println("Para finalizar digite 1 , para simular outra vez digite 0");
+		        	sair = scanner.nextInt();
+		        }
+	        	
+	        }
+			listaContas.add(contaInvestment);
 			System.out.println("Conta criada com sucesso.");
 		}
 			
