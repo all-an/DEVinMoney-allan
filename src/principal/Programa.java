@@ -113,11 +113,14 @@ public class Programa {
 	        		sair = 0;
 	        	}
 	        	while(sair == 0) {
-		        	System.out.println("Vamos simular seus investimentos. \nDigite em quantos meses deseja simular: ");
-		        	Integer meses = scanner.nextInt();
-		        	System.out.println("Digite a taxa de rentabilidade: ");
-		        	Double taxa = scanner.nextDouble();
-		            //System.out.println(contaPoupanca.simularRentabilidade(meses, taxa));
+		        	System.out.println("Vamos simular seus investimentos. \nDigite o valor a ser investido: ");
+		        	Double valorInvest = scanner.nextDouble();
+		        	if(valorInvest < contaInvestment.getSaldo()) {
+		        		contaInvestment.setValorInvestido(valorInvest);
+			        	System.out.println(contaInvestment.simulaRendimento());
+		        	}else {
+		        		System.out.println("Favor digitar um valor abaixo do seu saldo");
+		        	}
 		        	System.out.println("Para finalizar digite 1 , para simular outra vez digite 0");
 		        	sair = scanner.nextInt();
 		        }

@@ -24,9 +24,9 @@ O banco DEVinMoney deseja automatizar todo o seu sistema de armazenamento de inf
 - [x] ○ Na conta poupança, o cliente poderá simular quanto o seu valor renderá em um determinado tempo, para isso, o cliente deve informar a quantidade de tempo (em meses) e a rentabilidade anual da poupança. Por exemplo, se o cliente deseja saber a rentabilidade em 6 meses é preciso calcular o rendimento proporcional ao valor mensal. 
 - [x] ○ Extrato das transações 
 
-- [ ] ● Conta investimento 
-- [ ] ○ Neste tipo de conta, o cliente poderá escolher um tipo de investimento e o sistema deve apresentar o rendimento anual do investimento solicitado. 
-- [ ] ○ O cliente poderá simular o rendimento do seu valor, levando em consideração o rendimento do investimento escolhido. 
+- [x] ● Conta investimento 
+- [x] ○ Neste tipo de conta, o cliente poderá escolher um tipo de investimento e o sistema deve apresentar o rendimento anual do investimento solicitado. 
+- [x] ○ O cliente poderá simular o rendimento do seu valor, levando em consideração o rendimento do investimento escolhido. 
 
 Todas as contas devem ser derivadas da classe Conta, que possui os seguintes atributos e métodos: 
 
