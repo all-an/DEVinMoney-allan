@@ -10,11 +10,8 @@ public class ContaPoupanca extends Conta {
 	private Double rentabilidAnual;
 	private Map<Date, String> extratoTrancacoes;
 		
-	public ContaPoupanca(String nome, String cpf, Double rendaMensal, Integer agencia, Integer meses,
-			Double rentabilidAnual, Map<Date, String> extratoTrancacoes) {
+	public ContaPoupanca(String nome, String cpf, Double rendaMensal, Integer agencia) {
 		super(nome, cpf, rendaMensal,agencia);
-		this.meses = meses;
-		this.rentabilidAnual = rentabilidAnual;
 		this.extratoTrancacoes = new HashMap<Date, String>();
 		extratoTrancacoes.put(new Date(), rendaMensal.toString());
 	}
@@ -44,4 +41,11 @@ public class ContaPoupanca extends Conta {
 		this.extratoTrancacoes = extratoTrancacoes;
 	}
 	
+	public String simularRentabilidade(Integer meses, Double taxaRentabilidade) {
+		Double taxaMes = ((Math.pow((1.000 + (taxaRentabilidade / 100.000)),(1.000 / 12.000))) - 1.000) * 100.000;
+		Double valorAcumulado = saldo * Math.pow((1 + taxaMes), meses);
+		System.out.println(valorAcumulado);
+		String rendimentos = "Rendimentos: " + String.format("%.2f", valorAcumulado) + ", ao total de " + meses + " meses.";
+		return  rendimentos;
+	}
 }

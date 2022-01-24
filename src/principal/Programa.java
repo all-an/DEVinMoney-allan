@@ -81,6 +81,21 @@ public class Programa {
 		if(contaEscolha == 1) {
 			listaContas.add(new ContaCorrente(nome, cpf, rendaMensal, agencia));
 			System.out.println("Conta criada com sucesso.");
+		}else if(contaEscolha == 2) {
+			ContaPoupanca contaPoupanca = new ContaPoupanca(nome, cpf, rendaMensal, agencia); 
+			listaContas.add(contaPoupanca);
+			System.out.println("Conta criada com sucesso.");
+			int sair = 0;
+	        while(sair == 0) {
+	        	System.out.println("Vamos simular seus rendimentos. \nDigite em quantos meses deseja simular: ");
+	        	Integer meses = scanner.nextInt();
+	        	System.out.println("Digite a taxa de rentabilidade: ");
+	        	Double taxa = scanner.nextDouble();
+	            System.out.println(contaPoupanca.simularRentabilidade(meses, taxa));
+	        	System.out.println("Para finalizar digite 1 , para simular outra vez digite 0");
+	        	sair = scanner.nextInt();
+	        }
+			System.out.println("Conta criada com sucesso.");
 		}
 			
 		return null;

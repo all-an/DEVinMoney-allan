@@ -3,7 +3,7 @@
 
 # DEVinMoney-allan
 
-## Projeto Modulo 1 / DevInHouse / Senior Sistemas
+## Projeto 1 Modulo 1 / DevInHouse / Senior Sistemas
 
 ## Roadmap - Roteiro da aplicação 
 
@@ -19,9 +19,9 @@ O banco DEVinMoney deseja automatizar todo o seu sistema de armazenamento de inf
 - [x] ○ Na conta corrente o cliente tem direito ao cheque especial, ou seja, poderá ficar negativo durante um  período de tempo. O sistema deve definir o total do cheque especial, conforme a renda mensal do correntista. 
 - [x] ○ Extrato das transações 
 
-- [ ] ● Conta poupança 
+- [x] ● Conta poupança 
 - [x] ○ Na conta poupança o cliente não tem direito ao cheque especial. 
-- [ ] ○ Na conta poupança, o cliente poderá simular quanto o seu valor renderá em um determinado tempo, para isso, o cliente deve informar a quantidade de tempo (em meses) e a rentabilidade anual da poupança. Por exemplo, se o cliente deseja saber a rentabilidade em 6 meses é preciso calcular o rendimento proporcional ao valor mensal. 
+- [x] ○ Na conta poupança, o cliente poderá simular quanto o seu valor renderá em um determinado tempo, para isso, o cliente deve informar a quantidade de tempo (em meses) e a rentabilidade anual da poupança. Por exemplo, se o cliente deseja saber a rentabilidade em 6 meses é preciso calcular o rendimento proporcional ao valor mensal. 
 - [x] ○ Extrato das transações 
 
 - [ ] ● Conta investimento 
@@ -40,7 +40,7 @@ O banco DEVinMoney deseja automatizar todo o seu sistema de armazenamento de inf
 - [x] ● 002 - São José 
 - [x]○ Saldo 
 
-- [ ] ● Métodos 
+- [x] ● Métodos 
 - [x] ○ Saque 
 - [x] ○ Depósito 
 - [x] ○ Saldo 
