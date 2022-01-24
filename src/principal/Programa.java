@@ -1,7 +1,12 @@
 package principal;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.DayOfWeek;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +28,7 @@ public class Programa {
 	static List<Conta> listaContas = new ArrayList<>();
 	static List<Transacao> historicoTransacoes = new ArrayList<>();
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		
 		int sair = 0;
         while(sair == 0) {
@@ -133,11 +138,24 @@ public class Programa {
 		return null;
 	}
 	
-	public static void operacional() {
-		LocalDate hoje = LocalDate.now();
+	public static void operacional() throws IOException, InterruptedException {
 		
+		// proíbe que o usuário faça transações em dias anteriores alterando a data do sistema:
+		URL url = new URL("http://www.google.com"); // setando uma url
+		 
+        HttpURLConnection httpCon = (HttpURLConnection)url.openConnection(); //abrindo conexão
+        long dataUrl = httpCon.getDate(); //buscando e atribuindo a data da url em dataUrl
+        Date data = new Date(dataUrl); // pegando a data e criando variável data pela url acima
+        
+    	ZoneId zonaDefault = ZoneId.systemDefault(); //buscando e atribuindo em zonaDefault o id do time-zone como default do sistema
+
+    	Instant instante = data.toInstant(); // pegando o instante da data e atribuindo a um Instant 
+    	
+    	LocalDate hoje = instante.atZone(zonaDefault).toLocalDate(); // convertendo a data do instante para localdate
+		//
+    	
+    	
 		System.out.print("Digite o numero da sua conta corrente: ");
-		
 		
 		int numConta = scanner.nextInt();
 		Conta conta = listaContas.stream().filter(x -> x.getConta() == numConta).findFirst().orElse(null);

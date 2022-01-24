@@ -67,7 +67,7 @@ Todas as contas devem ser derivadas da classe Conta, que possui os seguintes atr
 - [ ] ● Total do valor investido 
 - [ ] ● Todas as transações de um determinado cliente. 
 
-- [ ] É importante que algumas transações não possam ser executadas em caso de problemas percebidos em suas operações: 
+- [x] É importante que algumas transações não possam ser executadas em caso de problemas percebidos em suas operações: 
 - [x] ● transferência entre contas cujo montante supera o saldo acrescido do limite do cheque especial da conta de origem 
 - [x] ● Operações em momentos anteriores ao dia/hora da transação 
 - [x] ● transferências durante o final de semana (sábado ou domingo) 
