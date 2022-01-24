@@ -1,6 +1,7 @@
 package entidades;
 
 import java.util.Arrays;
+import java.util.Date;
 
 public abstract class Conta {
 	
@@ -133,4 +134,17 @@ public abstract class Conta {
 	public void deposito(Double valor) {
 		saldo += valor;
 	}
+
+	public String transferir(Conta conta, Double valor) {
+		if(conta.getConta() != this.getConta()) {
+			saldo -= valor;
+			conta.deposito(valor);
+			return "Transferência realizada com sucesso !";
+		}else if(valor > conta.getSaldo()){
+			return "Você não tem saldo!";
+		}else {
+			return "É proibido transferir para si próprio !";
+		}
+	}
+	
 }

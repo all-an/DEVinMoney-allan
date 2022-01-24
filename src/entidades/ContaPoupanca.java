@@ -44,6 +44,4 @@ public class ContaPoupanca extends Conta {
 		this.extratoTrancacoes = extratoTrancacoes;
 	}
 	
-	
-
 }
