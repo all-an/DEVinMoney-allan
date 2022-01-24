@@ -83,26 +83,23 @@ public class Programa {
 			System.out.println("Conta criada com sucesso.");
 		}
 			
-		
-			//if(!containsId(listaContas, id)) {
-				//listaContas.add(new Employee(id, name, salary));
-			//}
 		return null;
 	}
 	
 	public static void operacional() {
 		LocalDate hoje = LocalDate.now();
 		
-		LocalDate someDate = LocalDate.of(2021, 1, 23); // 2nd-Jan-2021
-		
 		System.out.print("Digite o numero da sua conta corrente: ");
+		
+		
 		int numConta = scanner.nextInt();
 		Conta conta = listaContas.stream().filter(x -> x.getConta() == numConta).findFirst().orElse(null);
-		System.out.println("Digite operacao que deseja: "
-				+ "\n1) Saque \n2) Deposito \n3) Saldo \n4) Extrato \n5) Transferir \n6) Alterar Dados Cadastrais");
-		
-		int operacao = scanner.nextInt();
-		switch(operacao) {
+		if(listaContas.contains(conta)) {
+			System.out.println("Digite operacao que deseja: "
+					+ "\n1) Saque \n2) Deposito \n3) Saldo \n4) Extrato \n5) Transferir \n6) Alterar Dados Cadastrais");
+			
+			int operacao = scanner.nextInt();
+			switch(operacao) {
 			case 1:
 				System.out.println("Digite o valor a ser sacado: ");
 				Double valorSaque = scanner.nextDouble();
@@ -112,12 +109,12 @@ public class Programa {
 				break;
 			case 2:
 				
-					System.out.println("Digite o valor a ser depositado: ");
-					Double valorDeposito = scanner.nextDouble();
-					conta.deposito(valorDeposito);
-					historicoTransacoes.add(new Transacao(conta, conta, valorDeposito, new Date()));
-					System.out.println(conta.getSaldo());
-					break;					
+				System.out.println("Digite o valor a ser depositado: ");
+				Double valorDeposito = scanner.nextDouble();
+				conta.deposito(valorDeposito);
+				historicoTransacoes.add(new Transacao(conta, conta, valorDeposito, new Date()));
+				System.out.println(conta.getSaldo());
+				break;					
 				
 			case 3:
 				System.out.print("Saldo: " + conta.getSaldo());
@@ -130,15 +127,20 @@ public class Programa {
 				}
 				break;
 			case 5:
-				if(!confereFimDeSemana(someDate)){
-					System.out.print("Digite o numero da conta de destino: ");
-					int numContaDest = scanner.nextInt();
-					Conta contaDestino = listaContas.stream().filter(x -> x.getConta() == numContaDest).findFirst().orElse(null);
-					System.out.println("Digite o valor a ser transferido: ");
-					Double valorATransferir = scanner.nextDouble();
-					conta.transferir(contaDestino, valorATransferir);
-					historicoTransacoes.add(new Transacao(contaDestino, conta, valorATransferir, new Date()));
-					break;
+				if(!confereFimDeSemana(hoje)){
+					if(listaContas.contains(conta)) {
+						System.out.print("Digite o numero da conta de destino: ");
+						int numContaDest = scanner.nextInt();
+						Conta contaDestino = listaContas.stream().filter(x -> x.getConta() == numContaDest).findFirst().orElse(null);
+						System.out.println("Digite o valor a ser transferido: ");
+						Double valorATransferir = scanner.nextDouble();
+						conta.transferir(contaDestino, valorATransferir);
+						historicoTransacoes.add(new Transacao(contaDestino, conta, valorATransferir, new Date()));
+						break;
+					}else {
+						System.out.println("Conta destino nao existe");
+						break;
+					}
 				}else {
 					System.out.println("Transacao proibida aos fins de semana");
 					break;
@@ -159,12 +161,15 @@ public class Programa {
 					conta.setAgencia(scanner.nextInt());
 				}
 				break;
+			}
+		}else {
+			System.out.println("Conta nao existe");
 		}
 	}
 	
 	// Trecho de código que foi pedida a autorização de uso ao professor no Slack (dia 24/01/21 9:21 AM)
 	// Encontrado neste site  shorturl.at/jtvIJ
-	public static boolean confereFimDeSemana(final LocalDate ld) // passa a data atual como parâmetro e travada no dia e hora
+	public static boolean confereFimDeSemana(final LocalDate ld) // passa a data atual como parâmetro e travada no dia e hora atual
     {
         DayOfWeek dia = DayOfWeek.of(ld.get(ChronoField.DAY_OF_WEEK)); // pega o dia da semana desta data e atribui a uma variável dia
         return dia == DayOfWeek.SUNDAY || dia == DayOfWeek.SATURDAY; // retorna um booleano caso seja dia da semana ou não

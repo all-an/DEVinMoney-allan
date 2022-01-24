@@ -15,12 +15,12 @@
 
 O banco DEVinMoney deseja automatizar todo o seu sistema de armazenamento de informações referentes aos seus clientes. O sistema deve conter os seguintes tipos de contas, cada uma com suas características: 
 
-- [ ] ● Conta corrente 
-- [ ] ○ Na conta corrente o cliente tem direito ao cheque especial, ou seja, poderá ficar negativo durante um  período de tempo. O sistema deve definir o total do cheque especial, conforme a renda mensal do correntista. 
-- [ ] ○ Extrato das transações 
+- [x] ● Conta corrente 
+- [x] ○ Na conta corrente o cliente tem direito ao cheque especial, ou seja, poderá ficar negativo durante um  período de tempo. O sistema deve definir o total do cheque especial, conforme a renda mensal do correntista. 
+- [x] ○ Extrato das transações 
 
 - [ ] ● Conta poupança 
-- [ ] ○ Na conta poupança o cliente não tem direito ao cheque especial. 
+- [x] ○ Na conta poupança o cliente não tem direito ao cheque especial. 
 - [ ] ○ Na conta poupança, o cliente poderá simular quanto o seu valor renderá em um determinado tempo, para isso, o cliente deve informar a quantidade de tempo (em meses) e a rentabilidade anual da poupança. Por exemplo, se o cliente deseja saber a rentabilidade em 6 meses é preciso calcular o rendimento proporcional ao valor mensal. 
 - [x] ○ Extrato das transações 
 
