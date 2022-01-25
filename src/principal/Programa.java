@@ -141,7 +141,6 @@ public class Programa {
 			listaContas.add(contaInvestment);
 			System.out.println("Conta criada com sucesso. Conta Numero: " + contaInvestment.getConta());
 		}
-			
 		return null;
 	}
 	
@@ -299,9 +298,22 @@ public class Programa {
 				}
 				System.out.println("Total do valor investido: " + String.format("%.2f", totalValInvest));
 				break;
-			
-				
+			case 7:
+				System.out.println("Digite o CPF do cliente: ");
+				String cpf = scanner.next();
+				for(Conta conta : listaContas) {
+					if(conta.getCpf().equals(cpf)) {
+						for(Transacao transacao : historicoTransacoes) {
+							if(transacao.getDadosContaOrigem().getCpf().equals(cpf)) {
+								System.out.println(transacao.toString());
+							}
+						}
+					}else {
+						System.out.println("CPF nao encontrado.");
+					}
+				}			
+				break;
 		}
-		return "";
+		return null;
 	}
 }

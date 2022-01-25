@@ -86,10 +86,10 @@ public abstract class Conta {
 
 	public Boolean validaCpf(int[] cpf) {
 		if(cpf.length != 11) {
-			System.out.println("Cpf inválido");
+			System.out.println("Cpf invalido");
 			return false;
 		}else if(validadorGovBrDigitoUm(cpf) == false || validadorGovBrDigitoDois(cpf) == false) {
-			System.out.println("Digito Verificador INVÁLIDO, cpf inválido");
+			System.out.println("Digito Verificador INVALIDO, cpf invalido");
 			return false;
 		}
 		return true;

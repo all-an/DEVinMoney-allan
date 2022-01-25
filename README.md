@@ -37,10 +37,11 @@ Todas as contas devem ser derivadas da classe Conta, que possui os seguintes atr
 - [x] ● Renda mensal 
 - [x] ● Conta (o sistema deverá gerar um número da conta sequencial) 
 - [x] ● Agência 
-- [x] ■ Atualmente o banco possui duas agências: 
-- [x] ● 001 - Florianópolis 
-- [x] ● 002 - São José 
 - [x] ● Saldo 
+- [x] ■ Atualmente o banco possui duas agências: 
+- [x]   ● 001 - Florianópolis 
+- [x]   ● 002 - São José 
+
 
 - [x] ● Métodos 
 - [x] ● Saque 
@@ -56,16 +57,15 @@ Todas as contas devem ser derivadas da classe Conta, que possui os seguintes atr
 - [x] ● Dados Conta Destino 
 - [x] ● Valor 
 - [x] ● Data (pegar a data e hora do sistema) 
->>>> TODO : ADICIONAR ITENS AO HISTÓRICO
 
-- [ ] O sistema também deverá apresentar os seguintes relatórios: 
+- [x] O sistema também deverá apresentar os seguintes relatórios: 
 - [x] ● Listar todas as contas 
 - [x] ● Correntes 
 - [x] ● Poupanças 
 - [x] ● ou Investimento 
 - [x] ● Contas com saldo negativo 
 - [x] ● Total do valor investido 
-- [ ] ● Todas as transações de um determinado cliente. 
+- [x] ● Todas as transações de um determinado cliente. 
 
 - [x] É importante que algumas transações não possam ser executadas em caso de problemas percebidos em suas operações: 
 - [x] ● transferência entre contas cujo montante supera o saldo acrescido do limite do cheque especial da conta de origem 
