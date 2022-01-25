@@ -40,13 +40,15 @@ public class Programa {
             	System.out.println("------------------------------");
             	System.out.println("Bem vindo ao banco DevInMoney ! "
             			+ "\nEscolha a operacao digitando o numero referente: "
-            			+ "\n1) Cadastro \n2) Operacional \n3) Sair");
+            			+ "\n1) Cadastro \n2) Operacional (Saques, Depositos e afins) \n3) Relatorios \n4) Sair");
             	int operacao = scanner.nextInt();
             	if(operacao == 1)
             		cadastro();
             	else if(operacao == 2)
             		operacional();
             	else if(operacao == 3)
+            		relatorios();
+            	else if(operacao == 4)
             		sair = 1;
             	else {
             		System.out.println("Escolha novamente entre os numeros");
@@ -76,11 +78,11 @@ public class Programa {
 	}
 	
 	public static String cadastro() {
-    	System.out.println("Digite o nome: ");	
+    	System.out.println("Digite o Nome: ");	
 		String nome = scanner.next();
-		System.out.println("Digite o cpf: ");	
+		System.out.println("Digite o CPF: ");	
 		String cpf = scanner.next();
-		System.out.println("Digite a renda mensal: ");
+		System.out.println("Digite a Renda Mensal: ");
 		Double rendaMensal = scanner.nextDouble();
 		System.out.println("Digite a agencia: \n001) Florianopolis \n002) Sao Jose");
 		Integer agencia = scanner.nextInt();
@@ -92,11 +94,11 @@ public class Programa {
 		if(contaEscolha == 1) {
 			ContaCorrente contaCorrente = new ContaCorrente(nome, cpf, rendaMensal, agencia);
 			listaContas.add(contaCorrente);
-			System.out.println("Conta criada com sucesso. Conta Número: " + contaCorrente.getConta());
+			System.out.println("Conta criada com sucesso. Conta Numero: " + contaCorrente.getConta());
 		}else if(contaEscolha == 2) {
 			ContaPoupanca contaPoupanca = new ContaPoupanca(nome, cpf, rendaMensal, agencia); 
 			listaContas.add(contaPoupanca);
-			System.out.println("Conta criada com sucesso. Conta Número: " + contaPoupanca.getConta());
+			System.out.println("Conta criada com sucesso. Conta Numero: " + contaPoupanca.getConta());
 			int sair = 0;
 	        while(sair == 0) {
 	        	System.out.println("Vamos simular seus rendimentos. \nDigite em quantos meses deseja simular: ");
@@ -107,7 +109,7 @@ public class Programa {
 	        	System.out.println("Para finalizar digite 1 , para simular outra vez digite 0");
 	        	sair = scanner.nextInt();
 	        }
-			System.out.println("Conta criada com sucesso. Conta Número: " + contaPoupanca.getConta());
+			System.out.println("Conta criada com sucesso. Conta Numero: " + contaPoupanca.getConta());
 		}else if(contaEscolha == 3) {
 			ContaInvestimento contaInvestment = new ContaInvestimento(nome, cpf, rendaMensal, agencia, null);
 			int sair = 0;
@@ -137,7 +139,7 @@ public class Programa {
 	        	
 	        }
 			listaContas.add(contaInvestment);
-			System.out.println("Conta criada com sucesso. " + contaInvestment.getConta());
+			System.out.println("Conta criada com sucesso. Conta Numero: " + contaInvestment.getConta());
 		}
 			
 		return null;
@@ -170,71 +172,71 @@ public class Programa {
 			
 			int operacao = scanner.nextInt();
 			switch(operacao) {
-			case 1:
-				System.out.println("Digite o valor a ser sacado: ");
-				Double valorSaque = scanner.nextDouble();
-				conta.saque(valorSaque);
-				historicoTransacoes.add(new Transacao(conta, conta,valorSaque, new Date()));
-				System.out.println(conta.getSaldo());
-				break;
-			case 2:
-				
-				System.out.println("Digite o valor a ser depositado: ");
-				Double valorDeposito = scanner.nextDouble();
-				conta.deposito(valorDeposito);
-				historicoTransacoes.add(new Transacao(conta, conta, valorDeposito, new Date()));
-				System.out.println(conta.getSaldo());
-				break;					
-				
-			case 3:
-				System.out.print("Saldo: " + conta.getSaldo());
-				break;
-			case 4:
-				if(conta.getClass().isAssignableFrom(ContaCorrente.class) || conta.getClass().isAssignableFrom(ContaPoupanca.class)) {
-					ContaCorrente contaCorrente = (ContaCorrente) conta;
-					System.out.print(contaCorrente.getExtratoTrancacoes());
-					System.out.println(contaCorrente.getSaldo());
-				}else if(conta.getClass().isAssignableFrom(ContaInvestimento.class)) {
-					ContaInvestimento contaInvestimento = (ContaInvestimento) conta;
-					System.out.println(contaInvestimento.getExtratoTrancacoes());
-					System.out.println(contaInvestimento.getSaldo());
-				}
-				break;
-			case 5:
-				if(!confereFimDeSemana(hoje)){
-					if(listaContas.contains(conta)) {
-						System.out.print("Digite o numero da conta de destino: ");
-						int numContaDest = scanner.nextInt();
-						Conta contaDestino = listaContas.stream().filter(x -> x.getConta() == numContaDest).findFirst().orElse(null);
-						System.out.println("Digite o valor a ser transferido: ");
-						Double valorATransferir = scanner.nextDouble();
-						conta.transferir(contaDestino, valorATransferir);
-						historicoTransacoes.add(new Transacao(contaDestino, conta, valorATransferir, new Date()));
-						break;
+				case 1:
+					System.out.println("Digite o valor a ser sacado: ");
+					Double valorSaque = scanner.nextDouble();
+					conta.saque(valorSaque);
+					historicoTransacoes.add(new Transacao(conta, conta,valorSaque, new Date()));
+					System.out.println(conta.getSaldo());
+					break;
+				case 2:
+					
+					System.out.println("Digite o valor a ser depositado: ");
+					Double valorDeposito = scanner.nextDouble();
+					conta.deposito(valorDeposito);
+					historicoTransacoes.add(new Transacao(conta, conta, valorDeposito, new Date()));
+					System.out.println(conta.getSaldo());
+					break;					
+					
+				case 3:
+					System.out.print("Saldo: " + conta.getSaldo());
+					break;
+				case 4:
+					if(conta.getClass().isAssignableFrom(ContaCorrente.class) || conta.getClass().isAssignableFrom(ContaPoupanca.class)) {
+						ContaCorrente contaCorrente = (ContaCorrente) conta;
+						System.out.print(contaCorrente.getExtratoTrancacoes());
+						System.out.println(contaCorrente.getSaldo());
+					}else if(conta.getClass().isAssignableFrom(ContaInvestimento.class)) {
+						ContaInvestimento contaInvestimento = (ContaInvestimento) conta;
+						System.out.println(contaInvestimento.getExtratoTrancacoes());
+						System.out.println(contaInvestimento.getSaldo());
+					}
+					break;
+				case 5:
+					if(!confereFimDeSemana(hoje)){
+						if(listaContas.contains(conta)) {
+							System.out.print("Digite o numero da conta de destino: ");
+							int numContaDest = scanner.nextInt();
+							Conta contaDestino = listaContas.stream().filter(x -> x.getConta() == numContaDest).findFirst().orElse(null);
+							System.out.println("Digite o valor a ser transferido: ");
+							Double valorATransferir = scanner.nextDouble();
+							conta.transferir(contaDestino, valorATransferir);
+							historicoTransacoes.add(new Transacao(contaDestino, conta, valorATransferir, new Date()));
+							break;
+						}else {
+							System.out.println("Conta destino nao existe");
+							break;
+						}
 					}else {
-						System.out.println("Conta destino nao existe");
+						System.out.println("Transacao proibida aos fins de semana");
 						break;
 					}
-				}else {
-					System.out.println("Transacao proibida aos fins de semana");
+				case 6:
+					System.out.println("Digite o dado da conta que deseja alterar: "
+							+ "\n1) Nome \n2) Renda Mensal \n3) Agencia");
+					int dadoConta = 0;
+					if(dadoConta == 1) {
+						System.out.println("Digite o novo Nome: ");
+						conta.setNome(scanner.next());
+					}else if(dadoConta == 2) {
+						System.out.println("Digite a nova Renda Mensal: ");
+						conta.setRendaMensal(scanner.nextDouble());
+					}else if(dadoConta == 3) {
+						System.out.println("Digite a nova Agencia (001 ou 002) \nFavor nao digitar uma agencia invalida"
+								+ ", senao programa sera reiniciado");
+						conta.setAgencia(scanner.nextInt());
+					}
 					break;
-				}
-			case 6:
-				System.out.println("Digite o dado da conta que deseja alterar: "
-						+ "\n1) Nome \n2) Renda Mensal \n3) Agencia");
-				int dadoConta = 0;
-				if(dadoConta == 1) {
-					System.out.println("Digite o novo Nome: ");
-					conta.setNome(scanner.next());
-				}else if(dadoConta == 2) {
-					System.out.println("Digite a nova Renda Mensal: ");
-					conta.setRendaMensal(scanner.nextDouble());
-				}else if(dadoConta == 3) {
-					System.out.println("Digite a nova Agencia (001 ou 002) \nFavor nao digitar uma agencia invalida"
-							+ ", senao programa sera reiniciado");
-					conta.setAgencia(scanner.nextInt());
-				}
-				break;
 			}
 		}else {
 			System.out.println("Conta nao existe");
@@ -249,4 +251,26 @@ public class Programa {
         return dia == DayOfWeek.SUNDAY || dia == DayOfWeek.SATURDAY; // retorna um booleano caso seja dia da semana ou não
     }
 	
+	public static String relatorios() {
+		System.out.println("Digite: \n1) Listar todas as Contas \n2) Listar todas as Contas Correntes"
+				+ "\n3) Listar todas as Contas Poupancas \n4) Listar todas as Contas Investimento"
+				+ "\n5) Listar todas as contas com saldo negativo \n6) Listar o total do valor investido"
+				+ "\n7) Todas as transacoes de um determinado cliente.");
+		int entrada = scanner.nextInt();
+		switch(entrada) {
+			case 1:
+				for(Conta conta : listaContas) {
+					System.out.println(conta.toString());
+				}
+				break;
+			case 2:
+				for(Conta conta : listaContas) {
+					if(conta.getClass().isAssignableFrom(ContaCorrente.class))
+						System.out.println(conta.toString());
+				}
+				break;
+			
+		}
+		return "";
+	}
 }

@@ -46,7 +46,7 @@ Todas as contas devem ser derivadas da classe Conta, que possui os seguintes atr
 - [x] ● Saque 
 - [x] ● Depósito 
 - [x] ● Saldo 
-- [x] ● Extrato (( - [ ] TODO Extrato investimento testar ))
+- [x] ● Extrato
 - [x] ● Transferir 
 - [x] ● Alterar dados cadastrais (Exceto CPF) 
 
@@ -59,8 +59,8 @@ Todas as contas devem ser derivadas da classe Conta, que possui os seguintes atr
 >>>> TODO : ADICIONAR ITENS AO HISTÓRICO
 
 - [ ] O sistema também deverá apresentar os seguintes relatórios: 
-- [ ] ● Listar todas as contas 
-- [ ] ● Correntes 
+- [x] ● Listar todas as contas 
+- [x] ● Correntes 
 - [ ] ● Poupanças 
 - [ ] ● ou Investimento 
 - [ ] ● Contas com saldo negativo 

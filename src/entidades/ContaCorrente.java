@@ -16,5 +16,10 @@ public class ContaCorrente extends Conta {
 	public void setChequeEspecial(Double chequeEspecial) {
 		this.chequeEspecial = chequeEspecial;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Conta Corrente [nome= " + nome + ", cpf= " + getCpf() + ", rendaMensal= " + rendaMensal + ", agencia= "
+				+ agencia + "chequeEspecial= " + chequeEspecial + "]";
+	}
 }

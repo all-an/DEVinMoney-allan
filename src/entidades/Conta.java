@@ -7,11 +7,11 @@ import java.util.Map;
 
 public abstract class Conta {
 	
-	private String nome;
+	protected String nome;
 	private int[] cpf;
-	private Double rendaMensal;
+	protected Double rendaMensal;
 	private static int conta = 0;
-	private Integer agencia;
+	protected Integer agencia;
 	protected Double saldo;
 	protected Map<Date, String> extratoTrancacoes;
 
@@ -96,10 +96,7 @@ public abstract class Conta {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Conta [cpf=" + Arrays.toString(cpf) + "]";
-	}
+	
 	
 	//Segundo cálculo neste site https://www.somatematica.com.br/faq/cpf.php
 	public Boolean validadorGovBrDigitoUm(int[] cpf) {
@@ -162,5 +159,12 @@ public abstract class Conta {
 		}else {
 			return "É proibido transferir para si próprio !";
 		}
+	}
+
+
+	@Override
+	public String toString() {
+		return "Conta [nome=" + nome + ", cpf=" + getCpf() + ", rendaMensal=" + rendaMensal + ", agencia="
+				+ agencia + "]";
 	}
 }

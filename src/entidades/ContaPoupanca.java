@@ -44,8 +44,13 @@ public class ContaPoupanca extends Conta {
 	public String simularRentabilidade(Integer meses, Double taxaRentabilidade) {
 		Double taxaMes = ((Math.pow((1.000 + (taxaRentabilidade / 100.000)),(1.000 / 12.000))) - 1.000) * 100.000;
 		Double valorAcumulado = saldo * Math.pow((1 + taxaMes), meses);
-		System.out.println(valorAcumulado);
 		String rendimentos = "Rendimentos: " + String.format("%.2f", valorAcumulado) + ", ao total de " + meses + " meses.";
 		return  rendimentos;
+	}
+	
+	@Override
+	public String toString() {
+		return "Conta Poupanca [nome= " + nome + ", cpf= " + getCpf() + ", rendaMensal= " + rendaMensal + ", agencia= "
+				+ agencia + "]";
 	}
 }

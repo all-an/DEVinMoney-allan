@@ -37,4 +37,10 @@ public class ContaInvestimento extends Conta {
 			saque(valorInvestido);
 		return resposta;
 	}
+	
+	@Override
+	public String toString() {
+		return "Conta Poupanca [nome= " + nome + ", cpf= " + getCpf() + ", rendaMensal= " + rendaMensal + ", agencia= "
+				+ agencia + "]";
+	}
 }
