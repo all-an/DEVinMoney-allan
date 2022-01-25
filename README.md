@@ -61,10 +61,10 @@ Todas as contas devem ser derivadas da classe Conta, que possui os seguintes atr
 - [ ] O sistema também deverá apresentar os seguintes relatórios: 
 - [x] ● Listar todas as contas 
 - [x] ● Correntes 
-- [ ] ● Poupanças 
-- [ ] ● ou Investimento 
-- [ ] ● Contas com saldo negativo 
-- [ ] ● Total do valor investido 
+- [x] ● Poupanças 
+- [x] ● ou Investimento 
+- [x] ● Contas com saldo negativo 
+- [x] ● Total do valor investido 
 - [ ] ● Todas as transações de um determinado cliente. 
 
 - [x] É importante que algumas transações não possam ser executadas em caso de problemas percebidos em suas operações: 

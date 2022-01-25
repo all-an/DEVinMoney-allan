@@ -269,7 +269,38 @@ public class Programa {
 						System.out.println(conta.toString());
 				}
 				break;
+			case 3:
+				for(Conta conta : listaContas) {
+					if(conta.getClass().isAssignableFrom(ContaPoupanca.class))
+						System.out.println(conta.toString());
+				}
+				break;
+			case 4:
+				for(Conta conta : listaContas) {
+					if(conta.getClass().isAssignableFrom(ContaInvestimento.class))
+						System.out.println(conta.toString());
+				}
+				break;
+			case 5:
+				for(Conta conta : listaContas) {
+					if(conta.getClass().isAssignableFrom(ContaCorrente.class) && conta.getSaldo() < conta.getRendaMensal())
+						System.out.println("Conta Corrente com valor negativo ou abaixo do cheque especial: \n" + conta.toString());
+					else if(conta.getSaldo() < 0) 
+						System.out.println("Conta com valor abaixo de zero: \n" + conta.toString());
+				}
+				break;
+			case 6:
+				Double totalValInvest = 0.0;
+				for(Conta conta : listaContas) {
+					ContaInvestimento contaInvest = (ContaInvestimento)conta;		
+					if(contaInvest.getValorInvestido() > 0.0) {
+						totalValInvest += contaInvest.getValorInvestido();
+					}
+				}
+				System.out.println("Total do valor investido: " + String.format("%.2f", totalValInvest));
+				break;
 			
+				
 		}
 		return "";
 	}
