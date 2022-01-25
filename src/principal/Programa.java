@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 import entidades.Conta;
@@ -23,12 +24,15 @@ import servicos.InvestimentoCDB;
 import servicos.InvestimentoTesouroDireto;
 
 public class Programa {
+	
+	
 	static Scanner scanner = new Scanner(System.in);
 	
 	static List<Conta> listaContas = new ArrayList<>();
 	static List<Transacao> historicoTransacoes = new ArrayList<>();
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
+		Locale.setDefault(new Locale("pt", "BR"));
 		
 		int sair = 0;
         while(sair == 0) {
@@ -36,7 +40,7 @@ public class Programa {
             	System.out.println("------------------------------");
             	System.out.println("Bem vindo ao banco DevInMoney ! "
             			+ "\nEscolha a operacao digitando o numero referente: "
-            			+ "\n1) Cadastro \n2) Operacao \n3) Sair");
+            			+ "\n1) Cadastro \n2) Operacional \n3) Sair");
             	int operacao = scanner.nextInt();
             	if(operacao == 1)
             		cadastro();
@@ -45,12 +49,12 @@ public class Programa {
             	else if(operacao == 3)
             		sair = 1;
             	else {
-            		System.out.println("Digite uma opção valida");
+            		System.out.println("Escolha novamente entre os numeros");
             		continue;
             	}
             }
             catch(InputMismatchException | NumberFormatException ex ) {
-                System.out.println("Favor digitar um numero válido");
+                System.out.println("Favor digitar um numero valido");
                 scanner.next();
                 continue;
             }
@@ -139,7 +143,7 @@ public class Programa {
 	}
 	
 	public static void operacional() throws IOException, InterruptedException {
-		
+		// fonte de informação https://www.geeksforgeeks.org/getting-the-date-of-url-connection-in-java/
 		// proíbe que o usuário faça transações em dias anteriores alterando a data do sistema:
 		URL url = new URL("http://www.google.com"); // setando uma url
 		 
@@ -188,7 +192,9 @@ public class Programa {
 				if(conta.getClass().isAssignableFrom(ContaCorrente.class) || conta.getClass().isAssignableFrom(ContaPoupanca.class)) {
 					ContaCorrente contaCorrente = (ContaCorrente) conta;
 					System.out.print(contaCorrente.getExtratoTrancacoes());
-					contaCorrente.getSaldo();
+					System.out.println(contaCorrente.getSaldo());
+				}else if(conta.getClass().isAssignableFrom(ContaInvestimento.class)) {
+					ContaInvestimento contaInvestimento = (ContaInvestimento) conta;
 				}
 				break;
 			case 5:
