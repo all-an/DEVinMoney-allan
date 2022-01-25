@@ -57,6 +57,4 @@ public class Transacao {
 				+ ", valor=" + valor + ", data=" + data + "]" + "\n- - - - - - - - - - - - - -";
 	}
 	
-	
-	
 }

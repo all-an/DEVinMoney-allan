@@ -1,6 +1,9 @@
 package entidades;
 
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Conta {
 	
@@ -10,6 +13,7 @@ public abstract class Conta {
 	private static int conta = 0;
 	private Integer agencia;
 	protected Double saldo;
+	protected Map<Date, String> extratoTrancacoes;
 
 	public Conta(String nome, String cpf, Double rendaMensal,Integer agencia) {
 		this.nome = nome;
@@ -26,6 +30,8 @@ public abstract class Conta {
 			System.out.println("Você digitou uma agência inválida, vamos refazer o cadastro");
 		}
 		this.saldo = rendaMensal;
+		this.extratoTrancacoes = new HashMap<Date, String>();
+		extratoTrancacoes.put(new Date(), "Cheque Especial " + rendaMensal.toString() + "\n");
 	}
 	
 
@@ -69,6 +75,15 @@ public abstract class Conta {
 		String cpfString = stringBuilder.toString();
 		return cpfString;
 	}
+	
+	public Map<Date, String> getExtratoTrancacoes() {
+		return extratoTrancacoes;
+	}
+
+	public void setExtratoTrancacoes(Map<Date, String> extratoTrancacoes) {
+		this.extratoTrancacoes = extratoTrancacoes;
+	}
+
 
 	public Boolean validaCpf(int[] cpf) {
 		if(cpf.length != 11) {
@@ -128,16 +143,19 @@ public abstract class Conta {
 	
 	public void saque(Double valor) {
 		saldo -= valor;
+		extratoTrancacoes.put(new Date(), " -" + valor + "\n");
 	}
 	
 	public void deposito(Double valor) {
 		saldo += valor;
+		extratoTrancacoes.put(new Date(), " +" + valor + "\n");
 	}
 
 	public String transferir(Conta conta, Double valor) {
 		if(conta.getConta() != this.getConta()) {
 			saldo -= valor;
 			conta.deposito(valor);
+			extratoTrancacoes.put(new Date(), " -" + valor + "\n");
 			return "Transferência realizada com sucesso !";
 		}else if(valor > conta.getSaldo()){
 			return "Você não tem saldo!";
@@ -145,5 +163,4 @@ public abstract class Conta {
 			return "É proibido transferir para si próprio !";
 		}
 	}
-	
 }

@@ -1,5 +1,6 @@
 package servicos;
 
+
 public class InvestimentoTesouroDireto implements Investimento {
 
 	public InvestimentoTesouroDireto() {

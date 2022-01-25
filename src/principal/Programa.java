@@ -59,7 +59,7 @@ public class Programa {
                 continue;
             }
             catch(NullPointerException e) {
-            	System.out.println("Favor reiniciar o programa.");
+            	System.out.println("Digite 1 para reiniciar o programa.");
                 scanner.next();
                 continue;
             }
@@ -90,12 +90,13 @@ public class Programa {
 				+ "\n3) Conta Investimento ");
 		int contaEscolha = scanner.nextInt();
 		if(contaEscolha == 1) {
-			listaContas.add(new ContaCorrente(nome, cpf, rendaMensal, agencia));
-			System.out.println("Conta criada com sucesso.");
+			ContaCorrente contaCorrente = new ContaCorrente(nome, cpf, rendaMensal, agencia);
+			listaContas.add(contaCorrente);
+			System.out.println("Conta criada com sucesso. Conta Número: " + contaCorrente.getConta());
 		}else if(contaEscolha == 2) {
 			ContaPoupanca contaPoupanca = new ContaPoupanca(nome, cpf, rendaMensal, agencia); 
 			listaContas.add(contaPoupanca);
-			System.out.println("Conta criada com sucesso.");
+			System.out.println("Conta criada com sucesso. Conta Número: " + contaPoupanca.getConta());
 			int sair = 0;
 	        while(sair == 0) {
 	        	System.out.println("Vamos simular seus rendimentos. \nDigite em quantos meses deseja simular: ");
@@ -106,7 +107,7 @@ public class Programa {
 	        	System.out.println("Para finalizar digite 1 , para simular outra vez digite 0");
 	        	sair = scanner.nextInt();
 	        }
-			System.out.println("Conta criada com sucesso.");
+			System.out.println("Conta criada com sucesso. Conta Número: " + contaPoupanca.getConta());
 		}else if(contaEscolha == 3) {
 			ContaInvestimento contaInvestment = new ContaInvestimento(nome, cpf, rendaMensal, agencia, null);
 			int sair = 0;
@@ -122,13 +123,13 @@ public class Programa {
 	        		sair = 0;
 	        	}
 	        	while(sair == 0) {
-		        	System.out.println("Vamos simular seus investimentos. \nDigite o valor a ser investido: ");
+		        	System.out.println("Vamos simular seus investimentos. \nDigite o valor a ser investido: \nDigite 0 para nao investir no momento.");
 		        	Double valorInvest = scanner.nextDouble();
 		        	if(valorInvest < contaInvestment.getSaldo()) {
 		        		contaInvestment.setValorInvestido(valorInvest);
 			        	System.out.println(contaInvestment.simulaRendimento());
 		        	}else {
-		        		System.out.println("Favor digitar um valor abaixo do seu saldo");
+		        		System.out.println("Favor digitar um valor menor que seu saldo.");
 		        	}
 		        	System.out.println("Para finalizar digite 1 , para simular outra vez digite 0");
 		        	sair = scanner.nextInt();
@@ -136,7 +137,7 @@ public class Programa {
 	        	
 	        }
 			listaContas.add(contaInvestment);
-			System.out.println("Conta criada com sucesso.");
+			System.out.println("Conta criada com sucesso. " + contaInvestment.getConta());
 		}
 			
 		return null;
@@ -195,6 +196,8 @@ public class Programa {
 					System.out.println(contaCorrente.getSaldo());
 				}else if(conta.getClass().isAssignableFrom(ContaInvestimento.class)) {
 					ContaInvestimento contaInvestimento = (ContaInvestimento) conta;
+					System.out.println(contaInvestimento.getExtratoTrancacoes());
+					System.out.println(contaInvestimento.getSaldo());
 				}
 				break;
 			case 5:
@@ -245,4 +248,5 @@ public class Programa {
         DayOfWeek dia = DayOfWeek.of(ld.get(ChronoField.DAY_OF_WEEK)); // pega o dia da semana desta data e atribui a uma variável dia
         return dia == DayOfWeek.SUNDAY || dia == DayOfWeek.SATURDAY; // retorna um booleano caso seja dia da semana ou não
     }
+	
 }

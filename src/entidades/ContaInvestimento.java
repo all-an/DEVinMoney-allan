@@ -1,5 +1,7 @@
 package entidades;
 
+import java.util.Date;
+
 import servicos.Investimento;
 
 public class ContaInvestimento extends Conta {
@@ -30,6 +32,9 @@ public class ContaInvestimento extends Conta {
 	
 	public String simulaRendimento() {
 		String resposta = investimento.rendimento(valorInvestido);
+		if(valorInvestido != 0)
+			extratoTrancacoes.put(new Date(), "Investiu " + valorInvestido);
+			saque(valorInvestido);
 		return resposta;
 	}
 }
