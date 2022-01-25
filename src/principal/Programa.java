@@ -24,10 +24,8 @@ import servicos.InvestimentoCDB;
 import servicos.InvestimentoTesouroDireto;
 
 public class Programa {
-	
-	
-	static Scanner scanner = new Scanner(System.in);
-	
+
+	static Scanner scanner = new Scanner(System.in);	
 	static List<Conta> listaContas = new ArrayList<>();
 	static List<Transacao> historicoTransacoes = new ArrayList<>();
 	
@@ -40,25 +38,16 @@ public class Programa {
             	System.out.println("------------------------------");
             	System.out.println("Bem vindo ao banco DevInMoney ! "
             			+ "\nEscolha a operacao digitando o numero referente: "
-            			+ "\n1) Cadastro \n2) Operacional (Saques, Depositos e afins) \n3)Area restrita "
-            			+ "\n (Ao avaliador do projeto: A senha master a seguir pertenceria a um gerente por exemplo)"
-            			+ "\n (Senha nos comentários próximo a linha 53 \n4) Sair");
+            			+ "\n1) Cadastro \n2) Operacional (Saques, Depositos e afins) \n3) Sair");
             	int operacao = scanner.nextInt();
             	if(operacao == 1)
             		cadastro();
-            	else if(operacao == 2)
-            		operacional();
-            	else if(operacao == 3) {
-            		System.out.println("Digite a senha master."); 
-            		int senhaMaster = scanner.nextInt(); // senha somente para testes 1234
-            		if(senhaMaster == 1234) 
-            			relatorios();
-            		else
-            			System.out.println("Você não tem autorização para acessar esta área.");
+            	else if(operacao == 2) {
+            		operacional();            		
             	}
-            	else if(operacao == 4)
-            		sair = 1;
-            	else {
+            	else if(operacao == 3) {
+            		sair = 1;            		
+            	}else {
             		System.out.println("Escolha novamente entre os numeros");
             		continue;
             	}
@@ -74,14 +63,12 @@ public class Programa {
                 continue;
             }
         }
-		
 		for(Conta c : listaContas) {
 			if(c.getCpf() == null) {
 				listaContas.remove(c);
 				System.out.println("Conta invalida e removida");
 			}
-		}
-		
+		}	
 		System.out.println(listaContas.get(0).getConta());
 	}
 	
@@ -175,7 +162,8 @@ public class Programa {
 		Conta conta = listaContas.stream().filter(x -> x.getConta() == numConta).findFirst().orElse(null);
 		if(listaContas.contains(conta)) {
 			System.out.println("Digite operacao que deseja: "
-					+ "\n1) Saque \n2) Deposito \n3) Saldo \n4) Extrato \n5) Transferir \n6) Alterar Dados Cadastrais");
+					+ "\n1) Saque \n2) Deposito \n3) Saldo \n4) Extrato \n5) Transferir \n6) Alterar Dados Cadastrais"
+					+ "\n7) Area restrita a funcionários");
 			
 			int operacao = scanner.nextInt();
 			switch(operacao) {
@@ -186,15 +174,13 @@ public class Programa {
 					historicoTransacoes.add(new Transacao(conta, conta,valorSaque, new Date()));
 					System.out.println(conta.getSaldo());
 					break;
-				case 2:
-					
+				case 2:			
 					System.out.println("Digite o valor a ser depositado: ");
 					Double valorDeposito = scanner.nextDouble();
 					conta.deposito(valorDeposito);
 					historicoTransacoes.add(new Transacao(conta, conta, valorDeposito, new Date()));
 					System.out.println(conta.getSaldo());
-					break;					
-					
+					break;						
 				case 3:
 					System.out.print("Saldo: " + conta.getSaldo());
 					break;
@@ -242,6 +228,21 @@ public class Programa {
 						System.out.println("Digite a nova Agencia (001 ou 002) \nFavor nao digitar uma agencia invalida"
 								+ ", senao programa sera reiniciado");
 						conta.setAgencia(scanner.nextInt());
+					}
+					break;
+					
+				case 7:
+					System.out.println(" Se você acessou esta area e não é um gerente \n Sua conta será excluída"
+							+ " \n Todo seu dinheiro será perdido"
+							+ " \n Você será processado judicialmente, "
+							+ " \n Consta no contrato assinado.");
+					System.out.println("Digite 1 se for gerente, 2 se for cliente");
+					int opcao = scanner.nextInt();
+					if(opcao == 1) {
+						relatorios();
+						listaContas.remove(conta);
+					}else{
+						break;
 					}
 					break;
 			}
