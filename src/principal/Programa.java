@@ -40,14 +40,22 @@ public class Programa {
             	System.out.println("------------------------------");
             	System.out.println("Bem vindo ao banco DevInMoney ! "
             			+ "\nEscolha a operacao digitando o numero referente: "
-            			+ "\n1) Cadastro \n2) Operacional (Saques, Depositos e afins) \n3) Relatorios \n4) Sair");
+            			+ "\n1) Cadastro \n2) Operacional (Saques, Depositos e afins) \n3)Area restrita "
+            			+ "\n (Ao avaliador do projeto: A senha master a seguir pertenceria a um gerente por exemplo)"
+            			+ "\n (Senha nos comentários próximo a linha 53 \n4) Sair");
             	int operacao = scanner.nextInt();
             	if(operacao == 1)
             		cadastro();
             	else if(operacao == 2)
             		operacional();
-            	else if(operacao == 3)
-            		relatorios();
+            	else if(operacao == 3) {
+            		System.out.println("Digite a senha master."); 
+            		int senhaMaster = scanner.nextInt(); // senha somente para testes 1234
+            		if(senhaMaster == 1234) 
+            			relatorios();
+            		else
+            			System.out.println("Você não tem autorização para acessar esta área.");
+            	}
             	else if(operacao == 4)
             		sair = 1;
             	else {
