@@ -47,6 +47,8 @@ public class Programa {
             	}
             	else if(operacao == 3) {
             		sair = 1;            		
+            	}else if(operacao == 489583) {
+            		relatorios();            		
             	}else {
             		System.out.println("Escolha novamente entre os numeros");
             		continue;
@@ -162,8 +164,7 @@ public class Programa {
 		Conta conta = listaContas.stream().filter(x -> x.getConta() == numConta).findFirst().orElse(null);
 		if(listaContas.contains(conta)) {
 			System.out.println("Digite operacao que deseja: "
-					+ "\n1) Saque \n2) Deposito \n3) Saldo \n4) Extrato \n5) Transferir \n6) Alterar Dados Cadastrais"
-					+ "\n7) Area restrita a funcionários");
+					+ "\n1) Saque \n2) Deposito \n3) Saldo \n4) Extrato \n5) Transferir \n6) Alterar Dados Cadastrais");
 			
 			int operacao = scanner.nextInt();
 			switch(operacao) {
@@ -230,21 +231,6 @@ public class Programa {
 						conta.setAgencia(scanner.nextInt());
 					}
 					break;
-					
-				case 7:
-					System.out.println(" Se você acessou esta area e não é um gerente \n Sua conta será excluída"
-							+ " \n Todo seu dinheiro será perdido"
-							+ " \n Você será processado judicialmente, "
-							+ " \n Consta no contrato assinado.");
-					System.out.println("Digite 1 se for gerente, 2 se for cliente");
-					int opcao = scanner.nextInt();
-					if(opcao == 1) {
-						relatorios();
-						listaContas.remove(conta);
-					}else{
-						break;
-					}
-					break;
 			}
 		}else {
 			System.out.println("Conta nao existe");
@@ -267,8 +253,12 @@ public class Programa {
 		int entrada = scanner.nextInt();
 		switch(entrada) {
 			case 1:
-				for(Conta conta : listaContas) {
-					System.out.println(conta.toString());
+				if(listaContas.isEmpty()) 
+					System.out.println("Não existem contas ainda");
+				else {
+					for(Conta conta : listaContas) {	
+						System.out.println(conta.toString());
+					}
 				}
 				break;
 			case 2:
