@@ -39,6 +39,8 @@ public class Programa {
             	System.out.println("Bem vindo ao banco DevInMoney ! "
             			+ "\nEscolha a operacao digitando o numero referente: "
             			+ "\n1) Cadastro \n2) Operacional (Saques, Depositos e afins) \n3) Sair");
+            	// Para acessar os relatórios digite o número 489583 no menu inícial 
+            	// Seria como uma senha secreta gerencial modificada de hora em hora por exemplo
             	int operacao = scanner.nextInt();
             	if(operacao == 1)
             		cadastro();
@@ -262,37 +264,57 @@ public class Programa {
 				}
 				break;
 			case 2:
-				for(Conta conta : listaContas) {
-					if(conta.getClass().isAssignableFrom(ContaCorrente.class))
-						System.out.println(conta.toString());
+				if(listaContas.isEmpty()) 
+					System.out.println("Não existem contas ainda");
+				else {
+					for(Conta conta : listaContas) {
+						if(conta.getClass().isAssignableFrom(ContaCorrente.class))
+							System.out.println(conta.toString());
+					}
 				}
 				break;
 			case 3:
-				for(Conta conta : listaContas) {
-					if(conta.getClass().isAssignableFrom(ContaPoupanca.class))
-						System.out.println(conta.toString());
+				if(listaContas.isEmpty()) 
+					System.out.println("Não existem contas ainda");
+				else {
+					for(Conta conta : listaContas) {
+						if(conta.getClass().isAssignableFrom(ContaPoupanca.class))
+							System.out.println(conta.toString());
+					}
 				}
 				break;
 			case 4:
-				for(Conta conta : listaContas) {
-					if(conta.getClass().isAssignableFrom(ContaInvestimento.class))
-						System.out.println(conta.toString());
+				if(listaContas.isEmpty()) 
+					System.out.println("Não existem contas ainda");
+				else {
+					for(Conta conta : listaContas) {
+						if(conta.getClass().isAssignableFrom(ContaInvestimento.class))
+							System.out.println(conta.toString());
+					}
 				}
 				break;
 			case 5:
-				for(Conta conta : listaContas) {
-					if(conta.getClass().isAssignableFrom(ContaCorrente.class) && conta.getSaldo() < conta.getRendaMensal())
-						System.out.println("Conta Corrente com valor negativo ou abaixo do cheque especial: \n" + conta.toString());
-					else if(conta.getSaldo() < 0) 
-						System.out.println("Conta com valor abaixo de zero: \n" + conta.toString());
+				if(listaContas.isEmpty()) 
+					System.out.println("Não existem contas ainda");
+				else {
+					for(Conta conta : listaContas) {
+						if(conta.getClass().isAssignableFrom(ContaCorrente.class) && conta.getSaldo() < conta.getRendaMensal())
+							System.out.println("Conta Corrente com valor negativo ou abaixo do cheque especial: \n" + conta.toString());
+						else if(conta.getSaldo() < 0) 
+							System.out.println("Conta com valor abaixo de zero: \n" + conta.toString());
+					}
 				}
 				break;
 			case 6:
 				Double totalValInvest = 0.0;
-				for(Conta conta : listaContas) {
-					ContaInvestimento contaInvest = (ContaInvestimento)conta;		
-					if(contaInvest.getValorInvestido() > 0.0) {
-						totalValInvest += contaInvest.getValorInvestido();
+				if(listaContas.isEmpty()) 
+					System.out.println("Não existem contas ainda");
+				else {
+					for(Conta conta : listaContas) {
+						ContaInvestimento contaInvest = (ContaInvestimento)conta;		
+						if(contaInvest.getValorInvestido() > 0.0) {
+							totalValInvest += contaInvest.getValorInvestido();
+						}
 					}
 				}
 				System.out.println("Total do valor investido: " + String.format("%.2f", totalValInvest));
@@ -300,17 +322,21 @@ public class Programa {
 			case 7:
 				System.out.println("Digite o CPF do cliente: ");
 				String cpf = scanner.next();
-				for(Conta conta : listaContas) {
-					if(conta.getCpf().equals(cpf)) {
-						for(Transacao transacao : historicoTransacoes) {
-							if(transacao.getDadosContaOrigem().getCpf().equals(cpf)) {
-								System.out.println(transacao.toString());
+				if(listaContas.isEmpty()) 
+					System.out.println("Não existem contas ainda");
+				else {
+					for(Conta conta : listaContas) {
+						if(conta.getCpf().equals(cpf)) {
+							for(Transacao transacao : historicoTransacoes) {
+								if(transacao.getDadosContaOrigem().getCpf().equals(cpf)) {
+									System.out.println(transacao.toString());
+								}
 							}
+						}else {
+							System.out.println("CPF nao encontrado.");
 						}
-					}else {
-						System.out.println("CPF nao encontrado.");
-					}
-				}			
+					}		
+				}
 				break;
 		}
 		return null;

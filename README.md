@@ -13,6 +13,8 @@
 </a>
 </p>
 
+### Para acessar os relatórios digite o número 489583 no menu inícial (Senha secreta gerencial)
+
 O banco DEVinMoney deseja automatizar todo o seu sistema de armazenamento de informações referentes aos seus clientes. O sistema deve conter os seguintes tipos de contas, cada uma com suas características: 
 
 - [x] ● Conta corrente 
