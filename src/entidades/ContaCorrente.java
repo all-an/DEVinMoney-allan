@@ -19,7 +19,7 @@ public class ContaCorrente extends Conta {
 
 	@Override
 	public String toString() {
-		return "Conta Corrente [nome= " + nome + ", cpf= " + getCpf() + ", rendaMensal= " + rendaMensal + ", agencia= "
+		return "Numero Conta: " + this.getConta() + " Conta Corrente [nome= " + nome + ", cpf= " + getCpf() + ", rendaMensal= " + rendaMensal + ", agencia= "
 				+ agencia + "chequeEspecial= " + chequeEspecial + "]";
 	}
 }

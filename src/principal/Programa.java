@@ -45,7 +45,7 @@ public class Programa {
             	if(operacao == 1)
             		cadastro();
             	else if(operacao == 2) {
-            		operacional();            		
+            		operacional();          		
             	}
             	else if(operacao == 3) {
             		sair = 1;            		
@@ -100,7 +100,7 @@ public class Programa {
 			System.out.println("Conta criada com sucesso. Conta Numero: " + contaPoupanca.getConta());
 			int sair = 0;
 	        while(sair == 0) {
-	        	System.out.println("Vamos simular seus rendimentos. \nDigite em quantos meses deseja simular: ");
+	        	System.out.println("Vamos simular os rendimentos da poupança. \nDigite para quantos meses deseja simular: ");
 	        	Integer meses = scanner.nextInt();
 	        	System.out.println("Digite a taxa de rentabilidade: ");
 	        	Double taxa = scanner.nextDouble();

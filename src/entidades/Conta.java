@@ -9,12 +9,14 @@ public abstract class Conta {
 	protected String nome;
 	private int[] cpf;
 	protected Double rendaMensal;
-	private static int conta = 0;
+	private int numeroDaConta;
+	private static int contador = 1;
 	protected Integer agencia;
 	protected Double saldo;
 	protected Map<Date, String> extratoTrancacoes;
 
 	public Conta(String nome, String cpf, Double rendaMensal,Integer agencia) {
+		this.numeroDaConta = contador++;
 		this.nome = nome;
 		if(validaCpf(converteParaIntArr(cpf))) {
 			this.cpf = converteParaIntArr(cpf);
@@ -22,7 +24,7 @@ public abstract class Conta {
 			this.cpf = null;
 		}
 		this.rendaMensal = rendaMensal;
-		this.conta += 1;
+		
 		if(agencia == 001 || agencia == 002) {
 			this.agencia = agencia;
 		}else {
@@ -51,7 +53,7 @@ public abstract class Conta {
 	}
 
 	public int getConta() {
-		return conta;
+		return numeroDaConta;
 	}
 
 	public Integer getAgencia() {
@@ -163,7 +165,7 @@ public abstract class Conta {
 
 	@Override
 	public String toString() {
-		return "Conta [nome=" + nome + ", cpf=" + getCpf() + ", rendaMensal=" + rendaMensal + ", agencia="
+		return "Numero Conta: " + this.getConta() + " Conta [nome=" + nome + ", cpf=" + getCpf() + ", rendaMensal=" + rendaMensal + ", agencia="
 				+ agencia + "]";
 	}
 }
