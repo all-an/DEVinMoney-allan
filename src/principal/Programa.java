@@ -29,7 +29,7 @@ public class Programa {
 	static List<Conta> listaContas = new ArrayList<>();
 	static List<Transacao> historicoTransacoes = new ArrayList<>();
 	
-	public static void main(String[] args) throws IOException, InterruptedException {
+	public static void main(String[] args)  {
 		Locale.setDefault(new Locale("pt", "BR"));
 		
 		int sair = 0;
@@ -39,8 +39,8 @@ public class Programa {
             	System.out.println("Bem vindo ao banco DevInMoney ! "
             			+ "\nEscolha a operacao digitando o numero referente: "
             			+ "\n1) Cadastro \n2) Operacional (Saques, Depositos e afins) \n3) Sair");
-            	// Para acessar os relatórios digite o número 489583 no menu inícial 
-            	// Seria como uma senha secreta gerencial modificada de hora em hora por exemplo
+            	// Para acessar os relatórios digite o número 4895 no menu inícial 
+            	// Seria como uma senha secreta gerencial 
             	int operacao = scanner.nextInt();
             	if(operacao == 1)
             		cadastro();
@@ -49,7 +49,7 @@ public class Programa {
             	}
             	else if(operacao == 3) {
             		sair = 1;            		
-            	}else if(operacao == 489583) {
+            	}else if(operacao == 4895) {
             		relatorios();            		
             	}else {
             		System.out.println("Escolha novamente entre os numeros");
@@ -66,6 +66,11 @@ public class Programa {
                 scanner.next();
                 continue;
             }
+            catch(IOException | InterruptedException e) {
+            	System.out.println("Erro" + e.getMessage());
+                scanner.next();
+                continue;
+            }
         }
 		for(Conta c : listaContas) {
 			if(c.getCpf() == null) {
@@ -74,6 +79,7 @@ public class Programa {
 			}
 		}	
 		System.out.println(listaContas.get(0).getConta());
+		scanner.close();
 	}
 	
 	public static String cadastro() {
