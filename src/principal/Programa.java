@@ -62,7 +62,7 @@ public class Programa {
                 continue;
             }
             catch(NullPointerException e) {
-            	System.out.println("Digite 1 para reiniciar o programa.");
+            	System.out.println("Digite um valor valido.Digite 1 para reiniciar o programa.");
                 scanner.next();
                 continue;
             }
@@ -78,7 +78,6 @@ public class Programa {
 				System.out.println("Conta invalida e removida");
 			}
 		}	
-		System.out.println(listaContas.get(0).getConta());
 		scanner.close();
 	}
 	
@@ -87,6 +86,11 @@ public class Programa {
 		String nome = scanner.next();
 		System.out.println("Digite o CPF: ");	
 		String cpf = scanner.next();
+		for(Conta c : listaContas) {
+			if(c.getCpf().equals(cpf)) {
+				cpf = null;
+			}
+		}
 		System.out.println("Digite a Renda Mensal: ");
 		Double rendaMensal = scanner.nextDouble();
 		System.out.println("Digite a agencia: \n001) Florianopolis \n002) Sao Jose");
